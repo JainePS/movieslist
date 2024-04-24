@@ -4,8 +4,8 @@ import useMoviesByGenre from '../../../modules/movie/hooks/movie';
 import {MovieCategory} from '../../utils/moviesCategories';
 
 const HomeContainer = () => {
-  const {isPending, movies} = useMoviesByGenre(MovieCategory.COMEDY);
-  return <Home isLoading={isPending} movies={movies} />;
+  const {isLoading, movies} = useMoviesByGenre(MovieCategory.COMEDY);
+  return <Home isLoading={isLoading} movies={movies} />;
 };
 
 export default HomeContainer;

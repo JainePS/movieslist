@@ -2,12 +2,12 @@ import {useQuery} from '@tanstack/react-query';
 import {fetchMoviesByGenre} from '../../../context/movie/application/movies';
 
 const useMoviesByGenre = (genre: string) => {
-  const {isPending, data: movies} = useQuery({
+  const {isLoading, data: movies} = useQuery({
     queryKey: ['drama'],
     queryFn: () => fetchMoviesByGenre(genre),
   });
 
-  return {isPending, movies};
+  return {isLoading, movies};
 };
 
 export default useMoviesByGenre;
