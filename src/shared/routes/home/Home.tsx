@@ -1,6 +1,7 @@
 import React from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import {Movie} from '../../types/movie/movie';
+import MovieCards from '../../../modules/movie/components/MovieCards';
 
 type HomeProps = {
   isLoading: boolean;
@@ -14,7 +15,7 @@ const Home = ({isLoading, movies}: HomeProps) => {
 
   return (
     <View>
-      <Text>Hello world</Text>
+      <MovieCards movies={movies} />
     </View>
   );
 };
