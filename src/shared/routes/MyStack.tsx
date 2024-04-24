@@ -2,7 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import HomeContainer from './home/HomeContainer';
+import Home from './home';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export type RootStackParamList = {
