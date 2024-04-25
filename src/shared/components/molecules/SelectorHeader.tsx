@@ -1,6 +1,5 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {MOVIES_GENRE} from '../../utils/moviesCategories';
 import {scrollHorizontalViewstyles} from '../../styles/scrollView.styles';
 import ButtonView from '../atoms/Button';
 
