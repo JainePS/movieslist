@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {Movie} from '../../types/movie/movie';
 import MovieCards from '../../../modules/movie/components/MovieCards';
 
@@ -14,10 +14,16 @@ const Home = ({isLoading, movies}: HomeProps) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <MovieCards movies={movies} />
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+    borderRadius: 18,
+  },
+});
 export default Home;

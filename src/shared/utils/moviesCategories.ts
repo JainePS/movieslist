@@ -1,12 +1,12 @@
-export enum MovieCategory {
-  ACTION_ADVENTURE = 'action-adventure',
-  ANIMATION = 'animation',
-  CLASSIC = 'classic',
-  COMEDY = 'comedy',
-  DRAMA = 'drama',
-  HORROR = 'horror',
-  FAMILY = 'family',
-  MYSTERY = 'mystery',
-  SCIFI_FANTASY = 'scifi-fantasy',
-  WESTERN = 'western',
+export enum MovieGenre {
+  'Action Adventure' = 'action-adventure',
+  'Animation' = 'animation',
+  'Classic' = 'classic',
+  'Comedy' = 'comedy',
+  'Drama' = 'drama',
+  'Horror' = 'horror',
+  'Family' = 'family',
+  'Mystery' = 'mystery',
+  'Scifi Fantasy' = 'scifi-fantasy',
+  'Western' = 'western',
 }

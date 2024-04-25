@@ -1,10 +1,10 @@
 import React from 'react';
 import Home from './Home';
 import useMoviesByGenre from '../../../modules/movie/hooks/movie';
-import {MovieCategory} from '../../utils/moviesCategories';
+import {MovieGenre} from '../../utils/moviesCategories';
 
 const HomeContainer = () => {
-  const {isLoading, movies} = useMoviesByGenre(MovieCategory.COMEDY);
+  const {isLoading, movies} = useMoviesByGenre(MovieGenre.Comedy);
   return <Home isLoading={isLoading} movies={movies} />;
 };
 
