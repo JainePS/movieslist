@@ -2,25 +2,7 @@ import React, {useMemo} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {scrollHorizontalViewstyles} from '../../styles/scrollView.styles';
 import ButtonView from '../atoms/Button';
-
-const headerStyles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-around',
-    marginHorizontal: 5,
-    gap: 5,
-    height: 48,
-    flex: 1,
-  },
-});
-
-type Element = {
-  id: string;
-  value: string;
-};
+import {Element} from '../../types/common';
 
 type HeaderProps = {
   selectedElementID: string;
@@ -64,5 +46,19 @@ const SelectorHeader = ({
     </ScrollView>
   );
 };
+
+const headerStyles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    marginHorizontal: 5,
+    gap: 5,
+    height: 48,
+    flex: 1,
+  },
+});
 
 export default SelectorHeader;
