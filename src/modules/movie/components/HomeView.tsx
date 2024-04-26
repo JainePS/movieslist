@@ -1,18 +1,15 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {layoutStyles} from '../../../shared/styles/layout';
 import GenresHeader from './headers/GenresHeader';
+import MovieCards from './containers/MovieCards';
 
 const HomeView = () => {
-  const isLoading = false;
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
-
   return (
-    <View style={layoutStyles.container}>
+    <SafeAreaView style={layoutStyles.container}>
       <GenresHeader />
-    </View>
+      <MovieCards />
+    </SafeAreaView>
   );
 };
 

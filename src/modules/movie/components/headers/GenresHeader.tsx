@@ -11,8 +11,10 @@ const GenresHeader = () => {
    * Select the first genre as default value
    */
   useEffect(() => {
-    const {id} = genres[0];
-    onSelectGenre(id);
+    if (genres && genres.length > 0) {
+      const {id} = genres[0];
+      id && onSelectGenre(id);
+    }
   }, [genres]);
 
   return (

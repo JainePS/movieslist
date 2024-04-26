@@ -13,8 +13,13 @@ const sanitizeMovies = (
 };
 
 export const fetchMoviesByGenre = async (genreId: string): Promise<Movie[]> => {
-  const {data} = await axios.get<SampleapisMovie[]>(
-    `https://api.sampleapis.com/movies/${genreId}`,
-  );
+  const {data} = await axios.get<
+    SampleapisMovie[] & {error: string; message: string}
+  >(`https://api.sampleapis.com/movies/${genreId}`);
+
+  if (data.error) {
+    throw new Error('There was an error fetching the movies');
+  }
+
   return sanitizeMovies(data, genreId);
 };

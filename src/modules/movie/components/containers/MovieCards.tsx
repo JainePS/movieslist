@@ -1,28 +1,45 @@
 import React from 'react';
-import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
-import {Movie} from '../../../shared/types/movies';
-import Card from '../../../shared/components/organisms/Card';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import Card from '../../../../shared/components/organisms/Card';
+import {useMoviesContext} from '../../context/MoviesContext';
 
-export type MoviesProps = {
-  movies?: Movie[];
-};
+const MovieCards = () => {
+  const {movies, moviesError, IsMoviesLoading} = useMoviesContext();
 
-const MovieCards = ({movies}: MoviesProps) => {
+  console.log(moviesError);
+  
+
+  if (IsMoviesLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (moviesError) {
+    <View>
+      <Text>There was an error loading the movies of this genre</Text>
+    </View>;
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={movies}
         renderItem={({item}) => <Card movie={item} />}
         keyExtractor={item => `${item.id}`}
         style={styles.container}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    columnGap: 8,
+    columnGap: 4,
   },
   flexRow: {
     display: 'flex',
