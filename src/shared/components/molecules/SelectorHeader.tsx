@@ -35,7 +35,7 @@ const SelectorHeader = ({
         })}
       </View>
     ),
-    [elements, selectedElementID, onPress],
+    [elements, selectedElementID],
   );
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
+import MoviesStack from './routes/MoviesStack';
 
-import MoviesStack from './shared/routes/MoviesStack';
 
 function App(): React.JSX.Element {
   return <MoviesStack />;

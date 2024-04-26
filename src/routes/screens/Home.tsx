@@ -1,6 +1,6 @@
 import React from 'react';
-import HomeView from '../../../modules/movie/components/HomeView';
-import {MoviesContextProvider} from '../../../modules/movie/context/MoviesContext';
+import {MoviesContextProvider} from '../../modules/movie/context/MoviesContext';
+import HomeView from '../../modules/movie/components/HomeView';
 
 const Home = () => {
   return (
