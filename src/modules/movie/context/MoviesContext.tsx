@@ -1,19 +1,30 @@
-import {ReactNode, createContext, useContext} from 'react';
+import {ReactNode, createContext, useContext, useState} from 'react';
 
 export type MoviesContextProviderProps = {
   children: ReactNode;
 };
 
-type MoviesContextProviderValue = {};
+type MoviesContextProviderValue = {
+  selectedGenreId: string;
+  onSelectGenre: (_id: string) => void;
+};
 
-export const MoviesContext = createContext<MoviesContextProviderValue>({});
+export const MoviesContext = createContext<MoviesContextProviderValue>({
+  selectedGenreId: '',
+  onSelectGenre: () => {},
+});
 
 export const MoviesContextProvider = ({
   children,
 }: MoviesContextProviderProps) => {
-  // hace unas cosas piola
+  const [selectedGenreId, setSelectedGenreId] = useState<string>('');
 
-  const contextValue = {};
+  const onSelectGenre = (_id: string) => setSelectedGenreId(_id);
+
+  const contextValue = {
+    selectedGenreId,
+    onSelectGenre,
+  };
 
   return (
     <MoviesContext.Provider value={contextValue}>
