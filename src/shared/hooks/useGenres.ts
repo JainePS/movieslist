@@ -1,5 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
-import {fetchGenres} from '../../../shared/services/genreService';
+import {fetchGenres} from '../services/genreService';
 
 const useGenres = () => {
   const {data: genres = []} = useQuery({

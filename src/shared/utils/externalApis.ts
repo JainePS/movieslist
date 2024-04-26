@@ -1,3 +1,5 @@
+import {Genre} from '../types/movies';
+
 /**
  * Convert the sampleapis ids like 'action-adventure'
  * to a capitalized value replacing the - for spaces.
@@ -12,3 +14,8 @@ export const sanitizesampleapisIDs = (apiId: string) => {
 
   return result;
 };
+
+export const createGenreBySampleapiIDs = (apiId: string): Genre => ({
+  id: apiId,
+  value: sanitizesampleapisIDs(apiId),
+});

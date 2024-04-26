@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import SelectorHeader from '../../../../shared/components/molecules/SelectorHeader';
-import useGenres from '../../hooks/useGenres';
 import {useMoviesContext} from '../../context/MoviesContext';
+import useGenres from '../../../../shared/hooks/useGenres';
 
 const GenresHeader = () => {
   const {genres} = useGenres();
@@ -13,7 +13,7 @@ const GenresHeader = () => {
   useEffect(() => {
     const {id} = genres[0];
     onSelectGenre(id);
-  }, [genres, onSelectGenre]);
+  }, []);
 
   return (
     <SelectorHeader

@@ -1,4 +1,4 @@
-import {Movie} from './movie';
+import {Movie} from '../movies';
 
 export type CardProps = {
   movie: Movie;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
-import {Movie} from '../../../shared/types/movie/movie';
+import {Movie} from '../../../shared/types/movies';
 import Card from '../../../shared/components/organisms/Card';
 
 export type MoviesProps = {
