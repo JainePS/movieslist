@@ -56,8 +56,9 @@ const headerStyles = StyleSheet.create({
     justifyContent: 'space-around',
     marginHorizontal: 5,
     gap: 5,
-    height: 48,
+    height: 58,
     flex: 1,
+    backgroundColor: 'white',
   },
 });
 
