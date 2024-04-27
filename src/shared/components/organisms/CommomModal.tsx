@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
 
-import Details from '../../../modules/movie/components/DetailsView';
+import Details from '../../../modules/movie/components/views/DetailsView';
 
 type CommomModalProps = {
   onCloseModal: () => void;
