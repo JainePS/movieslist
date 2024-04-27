@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -8,15 +8,12 @@ import {
 } from 'react-native';
 import {CardProps} from '../../types/movie/card';
 import HeartIcon from '../atoms/icons/HeartIcon';
+import Avatar from '../atoms/Avatar';
 
 const Card = ({movie}: CardProps) => {
-  // const AVATAR_SOURCE = useMemo(
-  //   () =>
-  //     movie?.posterURL
-  //       ? movie.posterURL
-  //       : 'src/assets/images/placeholder_view_vector.png',
-  //   [movie.posterURL],
-  // );
+  const MOVIE_IMG = movie.posterURL
+    ? movie.posterURL
+    : 'assets/images/placeholder_view_vector.png';
 
   return (
     <View style={styles.container}>
@@ -24,14 +21,10 @@ const Card = ({movie}: CardProps) => {
         style={styles.item}
         onPress={() => console.log('onLongPress()')}>
         <View style={styles.flexRow}>
-          {/* <Image
-            source={{
-              uri: AVATAR_SOURCE,
-            }}
-          /> */}
+          <Avatar imgSrc={MOVIE_IMG} />
           <View style={styles.flexCol}>
-            <Text>{movie.title}</Text>
-            <Text>Genre</Text>
+            <Text style={styles.movieTitle}>{movie.title}</Text>
+            <Text style={styles.genre}>Genre</Text>
           </View>
         </View>
         <HeartIcon />
@@ -48,6 +41,8 @@ const styles = StyleSheet.create({
   flexRow: {
     display: 'flex',
     flexDirection: 'row',
+    gap: 7,
+    alignItems: 'center',
   },
   flexCol: {
     display: 'flex',
@@ -61,9 +56,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderRadius: 8,
+    alignItems: 'center',
   },
   movieTitle: {
     fontFamily: 'Satoshi-Black',
+    fontSize: 14,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  genre: {
+    color: '#D02F69',
   },
 });
 
