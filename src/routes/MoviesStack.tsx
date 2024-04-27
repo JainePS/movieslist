@@ -2,18 +2,17 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import Home from './home';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import Header from '../components/templates/Header';
+import {Home} from './screens';
 
 export type RootStackParamList = {
-  Home: undefined; // undefined because you aren't passing any params to the home screen
+  Home: undefined;
 };
 const queryClient = new QueryClient();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const MyStack = () => {
+const MoviesStack = () => {
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
@@ -22,7 +21,9 @@ const MyStack = () => {
             <Stack.Screen
               name="Home"
               component={Home}
-              options={{header: Header}}
+              options={{
+                headerShown: false,
+              }}
             />
           </Stack.Navigator>
         </SafeAreaProvider>
@@ -31,4 +32,4 @@ const MyStack = () => {
   );
 };
 
-export default MyStack;
+export default MoviesStack;
