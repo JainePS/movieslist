@@ -30,12 +30,11 @@ const buttonstyles = StyleSheet.create({
     backgroundColor: '#F1F1F1',
   },
   buttonSolid: {
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingVertical: 8,
+    paddingHorizontal: 18,
     borderRadius: 4,
-    elevation: 3,
+    borderWidth: 0,
     backgroundColor: 'black',
   },
   buttonOutlineText: {

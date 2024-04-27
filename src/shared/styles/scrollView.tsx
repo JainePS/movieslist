@@ -11,5 +11,6 @@ export const scrollHorizontalViewstyles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
 });
