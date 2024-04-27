@@ -38,7 +38,7 @@ const MovieCards = () => {
 
 const styles = StyleSheet.create({
   container: {
-    columnGap: 4,
+    columnGap: 2,
   },
   errorContainer: {
     display: 'flex',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   item: {
-    padding: 20,
+    padding: 10,
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: 'white',

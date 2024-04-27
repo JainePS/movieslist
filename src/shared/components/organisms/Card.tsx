@@ -18,13 +18,13 @@ const Card = ({movie}: CardProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.item}
+        style={styles.itemContent}
         onPress={() => console.log('onLongPress()')}>
         <View style={styles.flexRow}>
           <Avatar imgSrc={MOVIE_IMG} />
           <View style={styles.flexCol}>
             <Text style={styles.movieTitle}>{movie.title}</Text>
-            <Text style={styles.genre}>Genre</Text>
+            <Text style={styles.genre}>{movie.genre.value}</Text>
           </View>
         </View>
         <HeartIcon />
@@ -36,7 +36,8 @@ const Card = ({movie}: CardProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: 10,
+    paddingHorizontal: 20,
   },
   flexRow: {
     display: 'flex',
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
-  item: {
-    padding: 20,
+  itemContent: {
+    padding: 10,
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'row',
@@ -62,10 +63,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Satoshi-Black',
     fontSize: 14,
     color: 'black',
-    fontWeight: 'bold',
+    fontWeight: '900',
   },
   genre: {
     color: '#D02F69',
+    fontFamily: 'Satoshi',
+    fontWeight: '700',
+    fontSize: 12,
   },
 });
 
