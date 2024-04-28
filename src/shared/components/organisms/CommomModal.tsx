@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import Details from '../../../modules/movie/components/views/DetailsView';
@@ -6,9 +6,14 @@ import Details from '../../../modules/movie/components/views/DetailsView';
 type CommomModalProps = {
   onCloseModal: () => void;
   modalVisible: boolean;
+  children: ReactNode;
 };
 
-const CommonModal = ({modalVisible, onCloseModal}: CommomModalProps) => {
+const CommonModal = ({
+  modalVisible,
+  children,
+  onCloseModal,
+}: CommomModalProps) => {
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -17,7 +22,7 @@ const CommonModal = ({modalVisible, onCloseModal}: CommomModalProps) => {
         visible={modalVisible}
         onRequestClose={onCloseModal}>
         <TouchableOpacity style={styles.centeredView} onPressOut={onCloseModal}>
-          <Details />
+          {children}
         </TouchableOpacity>
       </Modal>
     </View>

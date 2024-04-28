@@ -5,18 +5,20 @@ import {Rating} from '../../../../shared/types/movies';
 import RatingDisplay from './RatingDisplay';
 
 type ratingViewProps = {
-  ratings: Rating[];
+  ratings?: Rating[];
 };
 
-const RatingView = ({ratings}: ratingViewProps) => {
+const RatingView = ({ratings = []}: ratingViewProps) => {
   return (
     <View style={styles.container}>
       {ratings.map((moviewRating, index) => {
+        console.log(moviewRating);
+
         return (
           <RatingDisplay
-            key={`${moviewRating}-${index}`}
-            source={moviewRating.source}
-            value={moviewRating.value}
+            key={`${moviewRating.Source}-${index}`}
+            source={moviewRating.Source}
+            value={moviewRating.Value}
           />
         );
       })}

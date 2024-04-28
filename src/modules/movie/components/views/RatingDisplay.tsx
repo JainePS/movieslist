@@ -1,9 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Rating} from '../../../../shared/types/movies';
-import Divider from '../../../../shared/components/atoms/Divider';
 
-const RatingDisplay = ({source, value}: Rating) => {
+type RatingDisplayProps = {
+  source: string;
+  value: string;
+};
+
+const RatingDisplay = ({source, value}: RatingDisplayProps) => {
   return (
     <View style={styles.flexRow}>
       <View style={styles.rating}>
@@ -23,10 +26,7 @@ const RatingDisplay = ({source, value}: Rating) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    // flexDirection: 'column',
-    // columnGap: 5,
-    // width: '100%',
-    // height: '100%',
+    padding: 15,
   },
   flexRow: {
     flex: 1,
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   rating: {
     display: 'flex',
     flexDirection: 'column',
-    borderBottomWidth: 1,
     width: '100%',
     columnGap: 3,
   },

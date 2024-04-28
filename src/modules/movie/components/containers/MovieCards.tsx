@@ -10,7 +10,8 @@ import Card from '../../../../shared/components/organisms/Card';
 import {useMoviesContext} from '../../context/MoviesContext';
 
 const MovieCards = () => {
-  const {movies, moviesError, IsMoviesLoading} = useMoviesContext();
+  const {movies, moviesError, IsMoviesLoading, showMovieDetails} =
+    useMoviesContext();
 
   if (IsMoviesLoading) {
     return <ActivityIndicator />;
@@ -29,7 +30,9 @@ const MovieCards = () => {
   return (
     <FlatList
       data={movies}
-      renderItem={({item}) => <Card movie={item} />}
+      renderItem={({item}) => (
+        <Card movie={item} onPress={() => showMovieDetails(item)} />
+      )}
       keyExtractor={item => `${item.id}`}
       style={styles.container}
     />

@@ -1,26 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {CardProps} from '../../types/movie/card';
 import HeartIcon from '../atoms/icons/HeartIcon';
 import Avatar from '../atoms/Avatar';
-import CommonModal from './CommomModal';
 
-const Card = ({movie}: CardProps & any) => {
-  const MOVIE_IMG = movie.posterURL
-    ? movie.posterURL
-    : 'assets/images/placeholder_view_vector.png';
-  const [modalVisible, setModalVisible] = useState(false);
+const FALLBACK_IMAGE_URL = 'assets/images/placeholder_view_vector.png';
 
-  const onCloseModal = () => {
-    setModalVisible(!modalVisible);
-  };
+const Card = ({movie, onPress}: CardProps) => {
+  const MOVIE_IMG = movie?.posterURL ?? FALLBACK_IMAGE_URL;
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.itemContent}
-        onPress={() => {
-          setModalVisible(!modalVisible);
-        }}>
+      <TouchableOpacity style={styles.itemContent} onPress={onPress}>
         <View style={styles.flexRow}>
           <Avatar imgSrc={MOVIE_IMG} />
           <View style={styles.flexCol}>
@@ -30,7 +21,6 @@ const Card = ({movie}: CardProps & any) => {
         </View>
         <HeartIcon />
       </TouchableOpacity>
-      <CommonModal modalVisible={modalVisible} onCloseModal={onCloseModal} />
     </View>
   );
 };
