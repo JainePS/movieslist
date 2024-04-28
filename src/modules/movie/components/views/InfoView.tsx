@@ -9,10 +9,18 @@ import ClockIcon from '../../../../shared/components/atoms/icons/ClockIcon';
 import {MovieDetails} from '../../../../shared/types/movies';
 
 type InfoViewProps = {
-  details: Partial<MovieDetails>;
+  details?: MovieDetails;
 };
 
 const Info = ({details}: InfoViewProps) => {
+  if (!details) {
+    return (
+      <View>
+        <Text>There is no details associated to this movie.</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.flexRow}>

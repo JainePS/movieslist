@@ -1,6 +1,9 @@
+import React from 'react';
+
 import {ReactNode, createContext, useContext, useState} from 'react';
 import useMoviesByGenre from '../../../shared/hooks/useMovies';
 import {Movie} from '../../../shared/types/movies';
+import MovieDetailsModal from '../components/modals/MovieDetailsModal';
 
 export type MoviesContextProviderProps = {
   children: ReactNode;
@@ -12,6 +15,7 @@ type MoviesContextProviderValue = {
   movies: Movie[];
   IsMoviesLoading: boolean;
   moviesError: Error | null;
+  showMovieDetails: (_movie: Movie) => void;
 };
 
 export const MoviesContext = createContext<MoviesContextProviderValue>({
@@ -20,6 +24,7 @@ export const MoviesContext = createContext<MoviesContextProviderValue>({
   movies: [],
   IsMoviesLoading: false,
   moviesError: null,
+  showMovieDetails: (_movie: Movie) => {},
 });
 
 export const MoviesContextProvider = ({
@@ -29,9 +34,15 @@ export const MoviesContextProvider = ({
   const {movies, IsMoviesLoading, moviesError} =
     useMoviesByGenre(selectedGenreId);
 
-  console.log('movies', movies);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>();
 
   const onSelectGenre = (_id: string) => setSelectedGenreId(_id);
+
+  const onCloseDetailsModal = () => {
+    setSelectedMovie(null);
+  };
+
+  const showMovieDetails = (movie: Movie) => setSelectedMovie(movie);
 
   const contextValue = {
     selectedGenreId,
@@ -39,11 +50,21 @@ export const MoviesContextProvider = ({
     movies,
     IsMoviesLoading,
     moviesError,
+    showMovieDetails,
   };
 
   return (
     <MoviesContext.Provider value={contextValue}>
       {children}
+
+      {/* DETAILS MODAL */}
+      {selectedMovie && (
+        <MovieDetailsModal
+          movie={selectedMovie}
+          modalVisible={!!selectedMovie}
+          onCloseDetailsModal={onCloseDetailsModal}
+        />
+      )}
     </MoviesContext.Provider>
   );
 };

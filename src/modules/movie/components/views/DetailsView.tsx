@@ -6,40 +6,36 @@ import Tabs from '../../../../shared/components/molecules/Tabs';
 
 import Info from './InfoView';
 import RatingView from './RatingView';
+import useMovieDetails from '../../../../shared/hooks/useMovieDetails';
+import {Movie} from '../../../../shared/types/movies';
 
-const Details = () => {
+type DetailsProps = {
+  movie: Movie;
+};
+
+const Details = ({movie}: DetailsProps) => {
+  const {title = ''} = movie;
+
   const [selectedTab, setSelectedTab] = useState(0);
+  const {details} = useMovieDetails(title);
 
   const onTabSelect = (tabIndex: number) => {
     setSelectedTab(tabIndex);
   };
 
-  const details = {
-    released: 'Release date',
-    language: 'Language',
-    genre: 'genre',
-    runtime: 'Run time',
-  };
-
-  const ratings = [
-    {source: 'Internet Movie Database', value: '7.4/10'},
-    {source: 'Rotten Tomatoes', value: '99%'},
-    {source: 'Metacritic', value: '93/100'},
-  ];
-
   const renderContent = () => {
     if (selectedTab === 0) {
       return <Info details={details} />;
     } else {
-      return <RatingView ratings={ratings} />;
+      return <RatingView ratings={details?.ratings} />;
     }
   };
 
   return (
     <View style={styles.modalView}>
-      <Text style={styles.modalTitle}>Movie name</Text>
-      <Poster />
-      <Text style={styles.textDescription}>Description of the movie</Text>
+      <Text style={styles.modalTitle}>{details?.title}</Text>
+      <Poster imgSrc={details?.poster} />
+      <Text style={styles.textDescription}>{details?.plot}</Text>
       <Tabs
         tabs={['Info', 'Ratings']}
         onPress={onTabSelect}
