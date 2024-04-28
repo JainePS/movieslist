@@ -15,8 +15,8 @@ const RatingView = ({ratings}: ratingViewProps) => {
         return (
           <RatingDisplay
             key={`${moviewRating}-${index}`}
-            ratingSouce={moviewRating.source}
-            rating={moviewRating.value}
+            source={moviewRating.source}
+            value={moviewRating.value}
           />
         );
       })}
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: 15,
     height: '50%',
   },
 });

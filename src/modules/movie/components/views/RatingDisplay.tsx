@@ -1,21 +1,20 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Rating} from '../../../../shared/types/movies';
+import Divider from '../../../../shared/components/atoms/Divider';
 
-type ratingViewProps = {
-  ratingSouce: string;
-  rating: string;
-};
-
-const RatingDisplay = ({ratingSouce, rating}: ratingViewProps) => {
+const RatingDisplay = ({source, value}: Rating) => {
   return (
     <View style={styles.flexRow}>
       <View style={styles.rating}>
         <View style={styles.flexRow}>
-          <Text style={styles.sourceTxt}>Source: </Text>
-          <Text>{ratingSouce}</Text>
+          <Text>Source: </Text>
+          <Text>{source}</Text>
         </View>
-        <Text style={styles.sourceTxt}>Rating: </Text>
-        <Text>{rating}</Text>
+        <View style={styles.flexRow}>
+          <Text>Rating: </Text>
+          <Text style={styles.sourceTxt}>{value}</Text>
+        </View>
       </View>
     </View>
   );
@@ -24,20 +23,24 @@ const RatingDisplay = ({ratingSouce, rating}: ratingViewProps) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    padding: 15,
+    // flexDirection: 'column',
+    // columnGap: 5,
+    // width: '100%',
+    // height: '100%',
   },
   flexRow: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: 5,
   },
   rating: {
     display: 'flex',
     flexDirection: 'column',
+    borderBottomWidth: 1,
+    width: '100%',
+    columnGap: 3,
   },
   imgContainer: {
     height: 20,

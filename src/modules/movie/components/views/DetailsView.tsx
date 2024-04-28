@@ -22,9 +22,9 @@ const Details = () => {
   };
 
   const ratings = [
-    {Source: 'Internet Movie Database', Value: '7.4/10'},
-    {Source: 'Rotten Tomatoes', Value: '99%'},
-    {Source: 'Metacritic', Value: '93/100'},
+    {source: 'Internet Movie Database', value: '7.4/10'},
+    {source: 'Rotten Tomatoes', value: '99%'},
+    {source: 'Metacritic', value: '93/100'},
   ];
 
   const renderContent = () => {
@@ -57,10 +57,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginBottom: 0,
   },
-  // modalContainer: {
-  //   backgroundColor: 'black',
-  //   height: '100%',
-  // },
   modalView: {
     backgroundColor: 'white',
     borderRadius: 20,
