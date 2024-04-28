@@ -12,7 +12,7 @@ const GenresHeader = () => {
    */
   useEffect(() => {
     if (genres && genres.length > 0) {
-      const {id} = genres[0];
+      const {id} = genres[1];
       id && onSelectGenre(id);
     }
   }, [genres]);

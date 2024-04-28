@@ -12,8 +12,6 @@ const RatingView = ({ratings = []}: ratingViewProps) => {
   return (
     <View style={styles.container}>
       {ratings.map((moviewRating, index) => {
-        console.log(moviewRating);
-
         return (
           <RatingDisplay
             key={`${moviewRating.Source}-${index}`}
@@ -30,8 +28,10 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
+    gap: 4,
+    padding: 15,
     width: '100%',
-    height: '50%',
+    // height: '50%',
   },
 });
 export default RatingView;
