@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     width: '100%',
-    height: '50%',
+    height: '60%',
     paddingHorizontal: 25,
   },
   button: {

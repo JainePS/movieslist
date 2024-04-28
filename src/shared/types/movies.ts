@@ -14,34 +14,34 @@ export type Movie = SampleapisMovie & {
 export type Genre = Element & {};
 
 export type MovieDetails = {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Language: string;
-  Country: string;
+  title: string;
+  year: string;
+  rated: string;
+  released: string;
+  runtime: string;
+  genre: string;
+  director: string;
+  writer: string;
+  actors: string;
+  plot: string;
+  language: string;
+  country: string;
   Awards: string;
-  Poster: string;
-  Ratings: Rating[];
-  Metascore: string;
+  poster: string;
+  ratings: Rating[];
+  metascore: string;
   imdbRating: string;
   imdbVotes: string;
   imdbID: string;
-  Type: string;
-  DVD: string;
-  BoxOffice: string;
-  Production: string;
-  Website: string;
-  Response: string;
+  type: string;
+  dvd: string;
+  boxOffice: string;
+  production: string;
+  website: string;
+  response: string;
 };
 
 export type Rating = {
-  Source: string;
-  Value: string;
+  source: string;
+  value: string;
 };

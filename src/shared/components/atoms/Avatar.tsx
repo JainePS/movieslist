@@ -2,14 +2,17 @@ import React from 'react';
 import {memo} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 
+const FALLBACL_IMG = require('../../../assets/images/placeholderImg.png');
+
 type AvatarProps = {
   imgSrc?: string;
 };
 
 const Avatar = ({imgSrc}: AvatarProps) => {
+  const imageSource = imgSrc ? {uri: imgSrc} : FALLBACL_IMG;
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{uri: imgSrc}} />
+      <Image style={styles.image} source={imageSource} />
     </View>
   );
 };
