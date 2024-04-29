@@ -32,6 +32,7 @@ npm run ios
 yarn ios
 ```
 ### Folder Structure
+```bash
 └── 📁src
     └── App.tsx
     └── 📁assets
@@ -61,3 +62,4 @@ yarn ios
         └── 📁styles
         └── 📁types
         └── 📁utils
+```
