@@ -1,8 +1,6 @@
 import React, {ReactNode} from 'react';
 import {Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
 
-import Details from '../../../modules/movie/components/views/DetailsView';
-
 type CommomModalProps = {
   onCloseModal: () => void;
   modalVisible: boolean;
@@ -20,7 +18,8 @@ const CommonModal = ({
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={onCloseModal}>
+        onRequestClose={onCloseModal}
+        statusBarTranslucent={true}>
         <TouchableOpacity style={styles.centeredView} onPressOut={onCloseModal}>
           {children}
         </TouchableOpacity>
