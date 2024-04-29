@@ -1,30 +1,20 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import Card from '../../../../shared/components/organisms/Card';
 import {useMoviesContext} from '../../context/MoviesContext';
+import Error from '../../../../shared/components/organisms/Error';
+import Loading from '../../../../shared/components/atoms/Loading';
 
 const MovieCards = () => {
-  const {movies, moviesError, IsMoviesLoading, showMovieDetails} =
+  const {movies, IsMoviesLoading, moviesError, showMovieDetails} =
     useMoviesContext();
 
   if (IsMoviesLoading) {
-    return <ActivityIndicator />;
+    return <Loading />;
   }
 
   if (moviesError) {
-    return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.textError}>
-          There was an error loading the movies of this genre.
-        </Text>
-      </View>
-    );
+    return <Error />;
   }
 
   return (
@@ -42,33 +32,6 @@ const MovieCards = () => {
 const styles = StyleSheet.create({
   container: {
     columnGap: 2,
-  },
-  errorContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '50%',
-    padding: 5,
-  },
-  flexRow: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  flexCol: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  item: {
-    padding: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
-    borderRadius: 8,
-  },
-  textError: {
-    fontSize: 18,
-    color: 'red',
   },
 });
 

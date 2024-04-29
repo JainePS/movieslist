@@ -57,7 +57,6 @@ const headerStyles = StyleSheet.create({
     marginHorizontal: 5,
     gap: 5,
     height: 58,
-    flex: 1,
     backgroundColor: 'white',
   },
 });

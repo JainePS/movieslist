@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   flexRow: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    columnGap: 3,
   },
   imgContainer: {
     height: 20,
