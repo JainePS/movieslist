@@ -21,6 +21,11 @@ const SelectorHeader = ({
   const selectorElement = useMemo(
     () => (
       <View style={headerStyles.container}>
+        <ButtonView
+          variant={selectedElementID === 'Favorites' ? 'solid' : 'outline'}
+          label={'Favorites'}
+          onButtonPress={() => onPress('Favorites')}
+        />
         {elements.map(({id, value}) => {
           const VARIANT = selectedElementID === id ? 'solid' : 'outline';
 
