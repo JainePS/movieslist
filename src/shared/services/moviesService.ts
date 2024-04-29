@@ -10,14 +10,7 @@ const sanitizeMovies = async (
 ): Promise<Movie[]> => {
   const FAVORITE_IDS = await getFavoritedIds();
 
-  console.log(FAVORITE_IDS);
-
   return movies.map(movie => {
-    console.log(
-      movie.id,
-      genreId,
-      FAVORITE_IDS.includes(getStorageMovieID(movie.id, genreId)),
-    );
     return {
       ...movie,
       genre: createGenreBySampleapiIDs(genreId),

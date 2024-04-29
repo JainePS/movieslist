@@ -9,7 +9,6 @@ import {
 import HeartIcon from '../atoms/icons/HeartIcon';
 import Avatar from '../atoms/Avatar';
 import {Movie} from '../../types/movies';
-import storage from '../../storage/storage';
 
 type CardProps = {
   movie: Movie;
@@ -32,8 +31,6 @@ const Card = ({movie, onPress, onFavorite}: CardProps) => {
     setIsFavorite(NEW_VALUE);
     onFavorite(movie, NEW_VALUE);
   };
-
-  // storage.clearMap();
 
   return (
     <View style={styles.container}>
