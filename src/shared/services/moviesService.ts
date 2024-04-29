@@ -13,6 +13,9 @@ const sanitizeMovies = (
 };
 
 export const fetchMoviesByGenre = async (genreId: string): Promise<Movie[]> => {
+  if (genreId === 'Favorites') {
+    return [];
+  }
   const {data} = await axios.get<
     SampleapisMovie[] & {error: string; message: string}
   >(`https://api.sampleapis.com/movies/${genreId}`);

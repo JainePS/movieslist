@@ -1,12 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {CardProps} from '../../types/movie/card';
 import HeartIcon from '../atoms/icons/HeartIcon';
 import Avatar from '../atoms/Avatar';
 
 const FALLBACK_IMAGE_URL = 'assets/images/placeholder_view_vector.png';
 
-const Card = ({movie, onPress}: CardProps) => {
+const Card = ({movie, onPress, onFavorite}: CardProps) => {
   const MOVIE_IMG = movie?.posterURL ?? FALLBACK_IMAGE_URL;
 
   return (
@@ -19,7 +25,9 @@ const Card = ({movie, onPress}: CardProps) => {
             <Text style={styles.genre}>{movie.genre.value}</Text>
           </View>
         </View>
-        <HeartIcon />
+        <Pressable onPress={() => onFavorite(movie)}>
+          <HeartIcon />
+        </Pressable>
       </TouchableOpacity>
     </View>
   );
