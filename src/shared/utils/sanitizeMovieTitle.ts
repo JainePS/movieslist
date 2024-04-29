@@ -4,7 +4,7 @@ export const sanitizeMovieTitles = (
   inputString: string,
   replacementChar: string,
 ) => {
-  return inputString.split(' ').join(replacementChar);
+  return inputString.split(' ').join(replacementChar).toLowerCase();
 };
 
 /**
