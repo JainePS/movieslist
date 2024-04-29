@@ -3,7 +3,7 @@ import storage from '../storage/storage';
 import {getStorageMovieID} from '../storage/utils';
 import {Movie} from '../types/movies';
 
-const CACHE_EXPIRATION_TIME = 1000 * 3600;
+const EXPIRATION_TIME = null;
 
 const addFavorite = (_movie: Movie) => {
   return storage.save({
@@ -13,7 +13,7 @@ const addFavorite = (_movie: Movie) => {
       isFavorite: true,
     },
     id: getStorageMovieID(_movie.id, _movie.genre.id),
-    expires: CACHE_EXPIRATION_TIME,
+    expires: EXPIRATION_TIME,
   });
 };
 

@@ -1,4 +1,4 @@
-import {Genre} from '../types/movies';
+import {Genre, MovieDetails} from '../types/movies';
 
 /**
  * Convert the sampleapis ids like 'action-adventure'
@@ -19,3 +19,16 @@ export const createGenreBySampleapiIDs = (apiId: string): Genre => ({
   id: apiId,
   value: sanitizesampleapisIDs(apiId),
 });
+
+/**
+ * Response keys are capitalized, sanitizing to lowercase
+ */
+export const sanitizeMovieResponseKeys = (response: any): MovieDetails => {
+  const sanitizedResponse: any = {};
+  Object.keys(response).forEach(key => {
+    const LOWERCASE_KEY = key.toLowerCase();
+    sanitizedResponse[LOWERCASE_KEY] = response[key];
+  });
+
+  return sanitizedResponse;
+};
