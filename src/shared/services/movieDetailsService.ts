@@ -6,7 +6,8 @@ import {
 } from '../utils/sanitizeMovieTitle';
 
 const buildAPIUrl = () => {
-  const API_key = process.env.OMDB_API_KEY ?? '';
+  // Add .env in a real world app
+  const API_key = 'ac298c31';
   if (!API_key) {
     throw new Error('There is no OMDB_API_KEY');
   }
@@ -21,7 +22,7 @@ export const fetchMovieDetailsByTitle = async (
 
   const {data} = await axios.get<
     MovieDetails & {error: string; message: string}
-  >(`${buildAPIUrl()}=${titleId}`);
+  >(`${buildAPIUrl()}&t=${titleId}`);
 
   if (data.error) {
     throw new Error('There was an error fetching the movie details');
