@@ -2,7 +2,11 @@ import {useQuery} from '@tanstack/react-query';
 import {fetchMovieDetailsByTitle} from '../services/movieDetailsService';
 
 const useMovieDetails = (title: string) => {
-  const {data: details} = useQuery({
+  const {
+    data: details,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['movie-details', title],
     queryFn: () => fetchMovieDetailsByTitle(title),
     staleTime: Infinity,
@@ -11,6 +15,8 @@ const useMovieDetails = (title: string) => {
 
   return {
     details,
+    isLoading,
+    isError,
   };
 };
 

@@ -56,8 +56,6 @@ export const MoviesContextProvider = ({
   return (
     <MoviesContext.Provider value={contextValue}>
       {children}
-
-      {/* DETAILS MODAL */}
       {selectedMovie && (
         <MovieDetailsModal
           movie={selectedMovie}

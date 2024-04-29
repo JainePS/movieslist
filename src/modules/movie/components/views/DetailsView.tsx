@@ -8,6 +8,8 @@ import Info from './InfoView';
 import RatingView from './RatingView';
 import useMovieDetails from '../../../../shared/hooks/useMovieDetails';
 import {Movie} from '../../../../shared/types/movies';
+import Loading from '../../../../shared/components/atoms/Loading';
+import Error from '../../../../shared/components/organisms/Error';
 
 type DetailsProps = {
   movie: Movie;
@@ -17,11 +19,15 @@ const Details = ({movie}: DetailsProps) => {
   const {title = ''} = movie;
 
   const [selectedTab, setSelectedTab] = useState(0);
-  const {details} = useMovieDetails(title);
+  const {details, isLoading, isError} = useMovieDetails(title);
 
   const onTabSelect = (tabIndex: number) => {
     setSelectedTab(tabIndex);
   };
+
+  if (isError) {
+    return <Error />;
+  }
 
   const renderContent = () => {
     if (selectedTab === 0) {
@@ -33,6 +39,11 @@ const Details = ({movie}: DetailsProps) => {
 
   return (
     <View style={styles.modalView}>
+      {isLoading && (
+        <View>
+          <Loading />
+        </View>
+      )}
       <Text style={styles.modalTitle}>{details?.title}</Text>
       <Poster imgSrc={details?.poster} />
       <Text style={styles.textDescription}>{details?.plot}</Text>
