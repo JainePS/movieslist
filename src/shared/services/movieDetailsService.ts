@@ -1,9 +1,13 @@
 import axios from 'axios';
 import {MovieDetails} from '../types/movies';
-import {
-  sanitizeMovieResponseKeys,
-  sanitizeMovieTitles,
-} from '../utils/sanitizeMovieTitle';
+import {sanitizeMovieResponseKeys} from '../utils/externalApis';
+
+/**
+ * Convert the movie title in the following example: 'incredibles+2'
+ */
+const sanitizeMovieTitles = (movieTitle: string) => {
+  return movieTitle.split(' ').join('+').toLowerCase();
+};
 
 const buildAPIUrl = () => {
   // Add .env in a real world app
@@ -18,7 +22,7 @@ const buildAPIUrl = () => {
 export const fetchMovieDetailsByTitle = async (
   title: string,
 ): Promise<MovieDetails> => {
-  const titleId = sanitizeMovieTitles(title, '+');
+  const titleId = sanitizeMovieTitles(title);
 
   const {data} = await axios.get<
     MovieDetails & {error: string; message: string}
