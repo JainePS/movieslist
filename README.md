@@ -32,7 +32,7 @@ npm run ios
 yarn ios
 ```
 ### Folder Structure
-```bash
+```
 └── 📁src
     └── App.tsx
     └── 📁assets
@@ -46,10 +46,11 @@ yarn ios
                 └── 📁modals
                 └── 📁views
             └── 📁context
-            ├── helpers
     └── 📁routes
         └── MoviesStack.tsx
         └── 📁screens
+            └── Home.tsx
+            └── index.ts
     └── 📁shared
         └── 📁components
             └── 📁atoms
