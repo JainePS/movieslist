@@ -19,6 +19,8 @@ const MovieCards = () => {
     onFavorite,
   } = useMoviesContext();
 
+  const IS_FAVORITE_TAB = selectedGenreId === 'Favorites';
+
   if (IsMoviesLoading) {
     return <Loading />;
   }
@@ -27,7 +29,7 @@ const MovieCards = () => {
     return <Error />;
   }
 
-  if (selectedGenreId === 'Favorites' && favorites.length === 0) {
+  if (IS_FAVORITE_TAB && favorites.length === 0) {
     return (
       <NoContent
         content={'Favorite movies'}
@@ -38,7 +40,7 @@ const MovieCards = () => {
 
   return (
     <FlatList
-      data={selectedGenreId === 'Favorites' ? favorites : movies}
+      data={IS_FAVORITE_TAB ? favorites : movies}
       renderItem={({item}) => (
         <Card
           movie={item}

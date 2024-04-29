@@ -8,7 +8,10 @@ const CACHE_EXPIRATION_TIME = 1000 * 3600;
 const addFavorite = (_movie: Movie) => {
   return storage.save({
     key: StorageKeys.Favorites,
-    data: _movie,
+    data: {
+      ..._movie,
+      isFavorite: true,
+    },
     id: getStorageMovieID(_movie.id, _movie.genre.id),
     expires: CACHE_EXPIRATION_TIME,
   });
