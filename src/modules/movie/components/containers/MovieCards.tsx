@@ -4,19 +4,20 @@ import Card from '../../../../shared/components/organisms/Card';
 import {useMoviesContext} from '../../context/MoviesContext';
 import Error from '../../../../shared/components/organisms/Error';
 import Loading from '../../../../shared/components/atoms/Loading';
-import useFavorites from '../../../../shared/hooks/useFavorites';
 import NoContent from '../../../../shared/components/organisms/NoContent';
+import {getStorageMovieID} from '../../../../shared/storage/utils';
 
 const MovieCards = () => {
   const {
+    selectedGenreId,
     movies,
     IsMoviesLoading,
-    selectedGenreId,
     moviesError,
-    onFavorite,
     showMovieDetails,
+    favorites,
+    favoritesError,
+    onFavorite,
   } = useMoviesContext();
-  const {favorites, favoritesError} = useFavorites();
 
   if (IsMoviesLoading) {
     return <Loading />;
@@ -34,6 +35,7 @@ const MovieCards = () => {
       />
     );
   }
+
   return (
     <FlatList
       data={selectedGenreId === 'Favorites' ? favorites : movies}
@@ -44,7 +46,7 @@ const MovieCards = () => {
           onFavorite={onFavorite}
         />
       )}
-      keyExtractor={item => `${item.id}`}
+      keyExtractor={item => getStorageMovieID(item.id, item.genre.id)}
       style={styles.container}
     />
   );

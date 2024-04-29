@@ -1,8 +1,16 @@
-import {useQuery} from '@tanstack/react-query';
-import {fetchFavorites} from '../services/favoritesService';
+import {useQuery, useQueryClient} from '@tanstack/react-query';
+import {favoriteMovie, fetchFavorites} from '../services/favoritesService';
 import {StorageKeys} from '../storage/keys';
+import {Movie} from '../types/movies';
 
 const useFavorites = () => {
+  const queryClient = useQueryClient();
+
+  const onFavorite = (_movie: Movie) => {
+    favoriteMovie(_movie);
+    queryClient.invalidateQueries({queryKey: [StorageKeys.Favorites]});
+  };
+
   const {
     data: favorites = [],
     isLoading: isFavoritesLoading,
@@ -14,7 +22,7 @@ const useFavorites = () => {
     staleTime: Infinity,
   });
 
-  return {isFavoritesLoading, favorites, favoritesError};
+  return {onFavorite, isFavoritesLoading, favorites, favoritesError};
 };
 
 export default useFavorites;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Pressable,
   StyleSheet,
@@ -6,14 +6,33 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {CardProps} from '../../types/movie/card';
 import HeartIcon from '../atoms/icons/HeartIcon';
 import Avatar from '../atoms/Avatar';
+import {Movie} from '../../types/movies';
+import storage from '../../storage/storage';
+
+type CardProps = {
+  movie: Movie;
+  onPress: () => void;
+  onFavorite: (movie: Movie) => void;
+};
 
 const FALLBACK_IMAGE_URL = 'assets/images/placeholder_view_vector.png';
 
+const isFavoritedStyle = (isFavorited: boolean) =>
+  isFavorited ? '#D02F69' : 'none';
+
 const Card = ({movie, onPress, onFavorite}: CardProps) => {
   const MOVIE_IMG = movie?.posterURL ?? FALLBACK_IMAGE_URL;
+
+  const [isFavorite, setIsFavorite] = useState<boolean>(movie?.isFavorite);
+
+  const onPressFavorite = () => {
+    setIsFavorite(prev => !prev);
+    onFavorite(movie);
+  };
+
+  // storage.clearMap();
 
   return (
     <View style={styles.container}>
@@ -25,8 +44,8 @@ const Card = ({movie, onPress, onFavorite}: CardProps) => {
             <Text style={styles.genre}>{movie.genre.value}</Text>
           </View>
         </View>
-        <Pressable onPress={() => onFavorite(movie)}>
-          <HeartIcon />
+        <Pressable onPress={onPressFavorite}>
+          <HeartIcon fill={isFavoritedStyle(isFavorite)} />
         </Pressable>
       </TouchableOpacity>
     </View>
