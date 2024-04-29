@@ -1,4 +1,5 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Movies List - Macadam
+[Screencast from 2024-04-29 16-51-42.webm](https://github.com/JainePS/movieslist/assets/92764262/0171b14e-9e47-4ef3-9482-5bac2dfee9a6)
 
 # Getting Started
 
