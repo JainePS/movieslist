@@ -16,7 +16,7 @@ const buildAPIUrl = () => {
     throw new Error('There is no OMDB_API_KEY');
   }
 
-  return `http://www.omdbapi.com/?apikey=${API_key}`;
+  return `https://www.omdbapi.com/?apikey=${API_key}`;
 };
 
 export const fetchMovieDetailsByTitle = async (
