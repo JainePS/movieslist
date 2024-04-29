@@ -5,13 +5,30 @@ import {Movie} from '../types/movies';
 
 const CACHE_EXPIRATION_TIME = 1000 * 3600;
 
-export const favoriteMovie = async (_movie: Movie) => {
-  storage.save({
+const addFavorite = (_movie: Movie) => {
+  return storage.save({
     key: StorageKeys.Favorites,
     data: _movie,
     id: getStorageMovieID(_movie.id, _movie.genre.id),
     expires: CACHE_EXPIRATION_TIME,
   });
+};
+
+const removeFavorite = ({id, genre}: Movie) => {
+  return storage.remove({
+    key: StorageKeys.Favorites,
+    id: getStorageMovieID(id, genre.id),
+  });
+};
+
+export const favoriteMovie = async (
+  _movie: Movie,
+  _newValue: boolean = true,
+) => {
+  if (_newValue) {
+    return addFavorite(_movie);
+  }
+  return removeFavorite(_movie);
 };
 
 export const isFavorite = async (_id: number, _genreId: string) => {

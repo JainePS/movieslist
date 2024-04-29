@@ -14,7 +14,7 @@ import storage from '../../storage/storage';
 type CardProps = {
   movie: Movie;
   onPress: () => void;
-  onFavorite: (movie: Movie) => void;
+  onFavorite: (_movie: Movie, _newValue: boolean) => void;
 };
 
 const FALLBACK_IMAGE_URL = 'assets/images/placeholder_view_vector.png';
@@ -28,8 +28,9 @@ const Card = ({movie, onPress, onFavorite}: CardProps) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(movie?.isFavorite);
 
   const onPressFavorite = () => {
-    setIsFavorite(prev => !prev);
-    onFavorite(movie);
+    const NEW_VALUE = !isFavorite;
+    setIsFavorite(NEW_VALUE);
+    onFavorite(movie, NEW_VALUE);
   };
 
   // storage.clearMap();

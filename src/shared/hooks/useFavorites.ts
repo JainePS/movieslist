@@ -6,8 +6,8 @@ import {Movie} from '../types/movies';
 const useFavorites = () => {
   const queryClient = useQueryClient();
 
-  const onFavorite = (_movie: Movie) => {
-    favoriteMovie(_movie);
+  const onFavorite = (_movie: Movie, _newValue: boolean) => {
+    favoriteMovie(_movie, _newValue);
     queryClient.invalidateQueries({queryKey: [StorageKeys.Favorites]});
   };
 

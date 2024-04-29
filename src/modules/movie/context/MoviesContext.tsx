@@ -19,7 +19,7 @@ type MoviesContextProviderValue = {
   showMovieDetails: (_movie: Movie) => void;
   favorites: Movie[];
   favoritesError: Error | null;
-  onFavorite: (_movie: Movie) => void;
+  onFavorite: (_movie: Movie, _newValue: boolean) => void;
 };
 
 export const MoviesContext = createContext<MoviesContextProviderValue>({
@@ -31,7 +31,7 @@ export const MoviesContext = createContext<MoviesContextProviderValue>({
   showMovieDetails: (_movie: Movie) => {},
   favorites: [],
   favoritesError: null,
-  onFavorite: (_movie: Movie) => {},
+  onFavorite: (_movie: Movie, _newValue: boolean) => {},
 });
 
 export const MoviesContextProvider = ({
