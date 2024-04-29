@@ -4,26 +4,51 @@ import Card from '../../../../shared/components/organisms/Card';
 import {useMoviesContext} from '../../context/MoviesContext';
 import Error from '../../../../shared/components/organisms/Error';
 import Loading from '../../../../shared/components/atoms/Loading';
+import NoContent from '../../../../shared/components/organisms/NoContent';
+import {getStorageMovieID} from '../../../../shared/storage/utils';
 
 const MovieCards = () => {
-  const {movies, IsMoviesLoading, moviesError, showMovieDetails} =
-    useMoviesContext();
+  const {
+    selectedGenreId,
+    movies,
+    IsMoviesLoading,
+    moviesError,
+    showMovieDetails,
+    favorites,
+    favoritesError,
+    onFavorite,
+  } = useMoviesContext();
+
+  const IS_FAVORITE_TAB = selectedGenreId === 'Favorites';
 
   if (IsMoviesLoading) {
     return <Loading />;
   }
 
-  if (moviesError) {
+  if (moviesError || favoritesError) {
     return <Error />;
+  }
+
+  if (IS_FAVORITE_TAB && favorites.length === 0) {
+    return (
+      <NoContent
+        content={'Favorite movies'}
+        text="Browse our films and select your favorites"
+      />
+    );
   }
 
   return (
     <FlatList
-      data={movies}
+      data={IS_FAVORITE_TAB ? favorites : movies}
       renderItem={({item}) => (
-        <Card movie={item} onPress={() => showMovieDetails(item)} />
+        <Card
+          movie={item}
+          onPress={() => showMovieDetails(item)}
+          onFavorite={onFavorite}
+        />
       )}
-      keyExtractor={item => `${item.id}`}
+      keyExtractor={item => getStorageMovieID(item.id, item.genre.id)}
       style={styles.container}
     />
   );

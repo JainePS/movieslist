@@ -4,6 +4,7 @@ import {ReactNode, createContext, useContext, useState} from 'react';
 import useMoviesByGenre from '../../../shared/hooks/useMovies';
 import {Movie} from '../../../shared/types/movies';
 import MovieDetailsModal from '../components/modals/MovieDetailsModal';
+import useFavorites from '../../../shared/hooks/useFavorites';
 
 export type MoviesContextProviderProps = {
   children: ReactNode;
@@ -16,6 +17,9 @@ type MoviesContextProviderValue = {
   IsMoviesLoading: boolean;
   moviesError: Error | null;
   showMovieDetails: (_movie: Movie) => void;
+  favorites: Movie[];
+  favoritesError: Error | null;
+  onFavorite: (_movie: Movie, _newValue: boolean) => void;
 };
 
 export const MoviesContext = createContext<MoviesContextProviderValue>({
@@ -25,12 +29,18 @@ export const MoviesContext = createContext<MoviesContextProviderValue>({
   IsMoviesLoading: false,
   moviesError: null,
   showMovieDetails: (_movie: Movie) => {},
+  favorites: [],
+  favoritesError: null,
+  onFavorite: (_movie: Movie, _newValue: boolean) => {},
 });
 
 export const MoviesContextProvider = ({
   children,
 }: MoviesContextProviderProps) => {
+  const {favorites, favoritesError, onFavorite} = useFavorites();
+
   const [selectedGenreId, setSelectedGenreId] = useState<string>('');
+
   const {movies, IsMoviesLoading, moviesError} =
     useMoviesByGenre(selectedGenreId);
 
@@ -45,12 +55,18 @@ export const MoviesContextProvider = ({
   const showMovieDetails = (movie: Movie) => setSelectedMovie(movie);
 
   const contextValue = {
+    // Header Menu
     selectedGenreId,
     onSelectGenre,
+    // Movies
     movies,
     IsMoviesLoading,
     moviesError,
     showMovieDetails,
+    // Favorites
+    favorites,
+    favoritesError,
+    onFavorite,
   };
 
   return (

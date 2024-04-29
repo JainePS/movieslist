@@ -9,6 +9,7 @@ export type SampleapisMovie = {
 
 export type Movie = SampleapisMovie & {
   genre: Genre;
+  isFavorite: boolean;
 };
 
 export type Genre = Element & {};

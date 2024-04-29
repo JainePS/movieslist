@@ -1,18 +1,28 @@
 import axios from 'axios';
 import {Movie, SampleapisMovie} from '../types/movies';
 import {createGenreBySampleapiIDs} from '../utils/externalApis';
+import {getFavoritedIds} from './favoritesService';
+import {getStorageMovieID} from '../storage/utils';
 
-const sanitizeMovies = (
+const sanitizeMovies = async (
   movies: SampleapisMovie[],
   genreId: string,
-): Movie[] => {
-  return movies.map(movie => ({
-    ...movie,
-    genre: createGenreBySampleapiIDs(genreId),
-  }));
+): Promise<Movie[]> => {
+  const FAVORITE_IDS = await getFavoritedIds();
+
+  return movies.map(movie => {
+    return {
+      ...movie,
+      genre: createGenreBySampleapiIDs(genreId),
+      isFavorite: FAVORITE_IDS.includes(getStorageMovieID(movie.id, genreId)),
+    };
+  });
 };
 
 export const fetchMoviesByGenre = async (genreId: string): Promise<Movie[]> => {
+  if (genreId === 'Favorites') {
+    return [];
+  }
   const {data} = await axios.get<
     SampleapisMovie[] & {error: string; message: string}
   >(`https://api.sampleapis.com/movies/${genreId}`);
@@ -21,5 +31,5 @@ export const fetchMoviesByGenre = async (genreId: string): Promise<Movie[]> => {
     throw new Error('There was an error fetching the movies');
   }
 
-  return sanitizeMovies(data, genreId);
+  return await sanitizeMovies(data, genreId);
 };
