@@ -5,6 +5,7 @@ import {useMoviesContext} from '../../context/MoviesContext';
 import Error from '../../../../shared/components/organisms/Error';
 import Loading from '../../../../shared/components/atoms/Loading';
 import useFavorites from '../../../../shared/hooks/useFavorites';
+import NoContent from '../../../../shared/components/organisms/NoContent';
 
 const MovieCards = () => {
   const {
@@ -15,19 +16,24 @@ const MovieCards = () => {
     onFavorite,
     showMovieDetails,
   } = useMoviesContext();
-  const {favorites, isFavoritesLoading, favoritesError} = useFavorites();
+  const {favorites, favoritesError} = useFavorites();
 
   if (IsMoviesLoading) {
     return <Loading />;
   }
 
-  if (moviesError) {
+  if (moviesError || favoritesError) {
     return <Error />;
   }
-  // storage.clearMapForKey(StorageKeys.Favorites);
 
-  console.log(favorites, favoritesError, isFavoritesLoading, 'lalala');
-
+  if (selectedGenreId === 'Favorites' && favorites.length === 0) {
+    return (
+      <NoContent
+        content={'Favorite movies'}
+        text="Browse our films and select your favorites"
+      />
+    );
+  }
   return (
     <FlatList
       data={selectedGenreId === 'Favorites' ? favorites : movies}
